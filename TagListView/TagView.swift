@@ -11,19 +11,19 @@ import UIKit
 @IBDesignable
 open class TagView: UIButton {
 
-    @IBInspectable open var cornerRadius: CGFloat = 0 {
+    @IBInspectable open var cornerRadiusForTag: CGFloat = 0 {
         didSet {
-            layer.cornerRadius = cornerRadius
-            layer.masksToBounds = cornerRadius > 0
+            layer.cornerRadius = cornerRadiusForTag
+            layer.masksToBounds = cornerRadiusForTag > 0
         }
     }
-    @IBInspectable open var borderWidth: CGFloat = 0 {
+    @IBInspectable open var borderWidthForTag: CGFloat = 0 {
         didSet {
-            layer.borderWidth = borderWidth
+            layer.borderWidth = borderWidthForTag
         }
     }
     
-    @IBInspectable open var borderColor: UIColor? {
+    @IBInspectable open var borderColorForTag: UIColor? {
         didSet {
             reloadStyles()
         }
@@ -97,12 +97,12 @@ open class TagView: UIButton {
         }
         else if isSelected {
             backgroundColor = selectedBackgroundColor ?? tagBackgroundColor
-            layer.borderColor = selectedBorderColor?.cgColor ?? borderColor?.cgColor
+            layer.borderColor = selectedBorderColor?.cgColor ?? borderColorForTag?.cgColor
             setTitleColor(selectedTextColor, for: UIControl.State())
         }
         else {
             backgroundColor = tagBackgroundColor
-            layer.borderColor = borderColor?.cgColor
+            layer.borderColor = borderColorForTag?.cgColor
             setTitleColor(textColor, for: UIControl.State())
         }
     }

@@ -363,6 +363,7 @@ open class TagListView: UIView {
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         defer { rearrangeViews() }
+        tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagViews.insert(tagView, at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
         

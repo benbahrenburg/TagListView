@@ -246,6 +246,7 @@ open class TagListView: UIView {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
             
+          totalTagViewsWidth += tagView.frame.width
             if currentRowTagCount == 0 ||
                 (currentRowWidth + tagView.frame.width > frame.width && wrapTagsToNextRow){
                 currentRow += 1
@@ -297,12 +298,11 @@ open class TagListView: UIView {
         if rows > 0 {
             height -= marginY
         }
-      
-        var width = frame.width
-               if !wrapTagsToNextRow {
-                   width = (CGFloat(tagViews.count - 1) * marginX) + totalTagViewsWidth
-               }
-               return CGSize(width: width, height: height)
+          var width = frame.width
+      if !wrapTagsToNextRow {
+          width = (CGFloat(tagViews.count - 1) * marginX) + totalTagViewsWidth
+      }
+      return CGSize(width: width, height: height)
     }
     
     private func createNewTagView(_ title: String) -> TagView {

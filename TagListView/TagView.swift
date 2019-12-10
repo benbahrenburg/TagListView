@@ -93,7 +93,7 @@ open class TagView: UIButton {
     }
   }
 
-  private func reloadStyles() {
+  open func reloadStyles() {
 
     if isHighlighted {
       if let highlightedBackgroundColor = highlightedBackgroundColor {
@@ -111,7 +111,10 @@ open class TagView: UIButton {
         gradient.locations = [0.0, 1.0]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: frame.size.width, height: frame.size.height)
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: frame.size.width == 0 ? 200 : frame.size.width, height: frame.size.height)
+        if let gradient = layer.sublayers?[0] as? CAGradientLayer {
+              gradient.removeFromSuperlayer()
+        }
         layer.insertSublayer(gradient, at: 0)
       }
       layer.borderColor = selectedBorderColor?.cgColor ?? borderColorForTag?.cgColor
